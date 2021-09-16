@@ -1,12 +1,3 @@
-*.iml
-*~
-/local.properties
-/.idea/*
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-.DS_Store
-/venv/*
 ### Python template
 # Byte-compiled / optimized / DLL files
 __pycache__/
