@@ -1,4 +1,4 @@
-version: "3"
+version: "3.7"
 
 services:
   app:
@@ -10,14 +10,12 @@ services:
       - ./app:/app
     command: >
       sh -c "python manage.py runserver 0.0.0.0:8000"
-  db:
+  mariadb:
     image: mariadb
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
-
-  adminer:
-    image: adminer
-    restart: always
+    volumes:
+      - ./data:/var/lib/mysql
     ports:
-      - "8080:8080"
+      - "3306:3306"
