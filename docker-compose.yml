@@ -1,6 +1,20 @@
 version: "3.7"
 
 services:
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: app
+      MYSQL_USER: user
+      MYSQL_PASSWORD: supersecretpassword
+      MYSQL_ROOT_HOST: %
+    volumes:
+      - ./data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
   app:
     build:
       context: .
@@ -10,12 +24,10 @@ services:
       - ./app:/app
     command: >
       sh -c "python manage.py runserver 0.0.0.0:8000"
-  mariadb:
-    image: mariadb
-    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: example
-    volumes:
-      - ./data:/var/lib/mysql
-    ports:
-      - "3306:3306"
+      - DB_HOST=db
+      - DB_NAME=app
+      - DB_USER=user
+      - DB_PASS=supersecretpassword
+    depends_on:
+      - db
