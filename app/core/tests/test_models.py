@@ -1,6 +1,12 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
+from core import models
+
+def sample_user(email='test@ll.com', password='testpass'):
+    """Create a sample user"""
+    return get_user_model().objects.create_user(email, password)
+
 
 class ModelTests(TestCase):
 
@@ -39,3 +45,14 @@ class ModelTests(TestCase):
         self.assertTrue(user.is_superuser)
         # Our custom field:
         self.assertTrue(user.is_staff)
+
+    def test_history(self):
+        """Test history ... representation ?"""
+        history = models.History.objects.create(
+            user=sample_user(),
+            name='TestUserHistory'
+        )
+
+        # TODO: Test that history works properly [Nick]
+        # history.id
+        self.assertTrue(True)
