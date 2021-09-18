@@ -46,13 +46,13 @@ class ModelTests(TestCase):
         # Our custom field:
         self.assertTrue(user.is_staff)
 
-    def test_history(self):
-        """Test history ... representation ?"""
-        history = models.History.objects.create(
-            user=sample_user(),
-            name='TestUserHistory'
-        )
-
-        # TODO: Test that history works properly [Nick]
-        # history.id
-        self.assertTrue(True)
+    # def test_history(self):
+    #     """Test history ... representation ?"""
+    #     history = models.History.objects.create(
+    #         user=sample_user(),
+    #         name='TestUserHistory'
+    #     )
+    #
+    #     # TODO: Test that history works properly [Nick]
+    #     # history.id
+    #     self.assertTrue(True)
