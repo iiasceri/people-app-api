@@ -13,16 +13,31 @@ services:
               python manage.py migrate &&
               python manage.py runserver 0.0.0.0:8000"
     environment:
-      - DB_HOST=db
+      - DB_HOST=mysql
       - DB_NAME=app
-      - DB_USER=postgres
-      - DB_PASS=supersecretpassword
+      - DB_USER=user
+      - DB_PASS=secret
     depends_on:
-      - db
+      - mysql
 
-  db:
-    image: postgres:10-alpine
+#  db:
+#    image: postgres:10-alpine
+#    environment:
+#      - POSTGRES_DB=app
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=supersecretpassword
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
     environment:
-      - POSTGRES_DB=app
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=supersecretpassword
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=app
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=secret
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      - default
