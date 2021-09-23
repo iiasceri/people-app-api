@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
     PermissionsMixin
 
 from django.conf import settings
-
+# from user.serializers import UserSerializer
 
 class UserManager(BaseUserManager):
 
@@ -45,5 +45,12 @@ class Group(models.Model):
         on_delete=models.CASCADE,
     )
 
-    def __str__(self):
-        return self.name
+# class GroupUsers(models.Model):
+#     user = models.ForeignKey(
+#         settings.AUTH_USER_MODEL,
+#         on_delete=models.CASCADE,
+#     )
+#     users = UserSerializer().objects.get()
+#
+#     def __str__(self):
+#         return self.name

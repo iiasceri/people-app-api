@@ -8,7 +8,9 @@ from rest_framework import serializers
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
-        fields = ('id', 'name')
+        fields = '__all__'
+    # class Error:
+    #     error = 'error 999'
 
 class UserSerializer(serializers.ModelSerializer):
     """Serializer for the user object"""
