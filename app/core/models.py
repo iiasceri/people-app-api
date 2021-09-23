@@ -26,12 +26,10 @@ class UserManager(BaseUserManager):
 
         return user
 
-
 class User(AbstractBaseUser, PermissionsMixin):
     """Custom user model that supports using email instead of username"""
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
-    # phone_number = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
@@ -40,14 +38,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
 
 
-class Tag(models.Model):
-    """Tag to be used for a recipe"""
+class Group(models.Model):
     name = models.CharField(max_length=255)
-    # TODO: learn what is this [Nick]
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-    )test_models.py
+    )
 
     def __str__(self):
         return self.name

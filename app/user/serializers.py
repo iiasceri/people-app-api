@@ -1,8 +1,14 @@
 from django.contrib.auth import get_user_model, authenticate
 from django.utils.translation import ugettext_lazy as _
 
+from core.models import Group
+
 from rest_framework import serializers
 
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Group
+        fields = ('id', 'name')
 
 class UserSerializer(serializers.ModelSerializer):
     """Serializer for the user object"""
