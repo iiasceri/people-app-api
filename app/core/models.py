@@ -47,7 +47,7 @@ class Tag(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-    )
+    )test_models.py
 
     def __str__(self):
         return self.name
