@@ -3,6 +3,8 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
     PermissionsMixin
 
 from django.conf import settings
+
+
 # from user.serializers import UserSerializer
 
 class UserManager(BaseUserManager):
@@ -26,6 +28,7 @@ class UserManager(BaseUserManager):
 
         return user
 
+
 class User(AbstractBaseUser, PermissionsMixin):
     """Custom user model that supports using email instead of username"""
     email = models.EmailField(max_length=255, unique=True)
@@ -44,6 +47,25 @@ class Group(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
+    status = models.CharField(max_length=255)
+    group_link = models.CharField(max_length=255)
+    trash = models.CharField(max_length=255)
+    created_at = models.DateField(max_length=255)
+
+
+class GroupsUsers(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    group = models.ForeignKey(
+        settings.AUTH_GROUP_MODEL,
+        on_delete=models.CASCADE
+    )
+    status = models.CharField(max_length=255)
+    group_link = models.CharField(max_length=255)
+    trash = models.CharField(max_length=255)
+    created_at = models.DateField(max_length=255)
 
 # class GroupUsers(models.Model):
 #     user = models.ForeignKey(
